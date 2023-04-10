@@ -39,9 +39,9 @@ public class BaiduTTS : MonoBehaviour
     private string Speak = "我的名字叫做袁靖轩，是一名22岁的大学生，喜欢唱、跳、rap";
     private const string grant_Type = "client_credentials";
     //百度appkey
-    private const string client_ID = "FqgX7zARn2AiCDRYBNMG0B4E";
+    private string client_ID = "";
     //百度Secret Key
-    private const string client_Secret = "8cw3MgENUX5cd8RTmwWLKGBjc6DAQoPO";
+    private string client_Secret = "";
     //获取百度令牌的url
     private const string getTokenAPIPath = "https://aip.baidubce.com/oauth/2.0/token?";
     #endregion
@@ -56,6 +56,10 @@ public class BaiduTTS : MonoBehaviour
 
     private void Awake()
     {
+        var data = File.ReadAllLines("./Assets/BaiduTTS_Key.txt");
+        client_ID = data[0];
+        client_Secret = data[1];
+
         if (GetComponent<AudioSource>() == null)
         {
             aud = gameObject.AddComponent<AudioSource>();

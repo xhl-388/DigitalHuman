@@ -5,12 +5,17 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using static System.Net.WebRequestMethods;
+using System.IO;
 
 public class ChatGPT : MonoBehaviour
 {
     private const string URL = "https://api.openai.com/v1/completions";
-    private const string API_KEY = "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";
+    private string API_KEY = "";
+
+    private void Awake()
+    {
+        API_KEY = File.ReadAllLines("./Assets/ChatGPT_Key.txt")[0];
+    }
     private void Start()
     {
         StartCoroutine(PostRequest("Say this is a test"));
