@@ -76,11 +76,11 @@ public class BaiduTTS : MonoBehaviour
     private void Update()
     {
         // for test
-        if (bTokenReady && !bUsed)
-        {
-            bUsed = true;
-            TestTTS(Speak);
-        }
+        //if (bTokenReady && !bUsed)
+        //{
+        //    bUsed = true;
+        //    TestTTS(Speak);
+        //}
     }
 
     /// <summary>
@@ -186,7 +186,7 @@ public class BaiduTTS : MonoBehaviour
         StartCoroutine(Loading(url));
     }   //MP3 --- wav
 
-    private void TestTTS(string input)
+    public void TestTTS(string input)
     {
         tex = "";
         Speak = input;

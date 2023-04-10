@@ -11,10 +11,13 @@ public class ChatGPT : MonoBehaviour
 {
     private const string URL = "https://api.openai.com/v1/completions";
     private string API_KEY = "";
+    private BaiduTTS baiduTTS = null;
 
     private void Awake()
     {
         API_KEY = File.ReadAllLines("./Assets/ChatGPT_Key.txt")[0];
+
+        baiduTTS = GetComponent<BaiduTTS>();
     }
     private void Start()
     {
@@ -25,7 +28,7 @@ public class ChatGPT : MonoBehaviour
         // 创建要上传的json文本
         Hashtable tab = new Hashtable();
         tab.Add("model", "text-davinci-003");
-        tab.Add("prompt", "how can i make more money?");
+        tab.Add("prompt", "我该怎么赚钱？");
         tab.Add("max_tokens", 4000);
         string uploadStr = JsonMapper.ToJson(tab);
         Debug.Log(uploadStr);
@@ -44,7 +47,11 @@ public class ChatGPT : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             string responseText = webRequest.downloadHandler.text;
+            string answer =(string)JsonMapper.ToObject(responseText)["choices"][0]["text"];
             Debug.Log("Response: " + responseText);
+            Debug.Log("Ans: " + answer);
+
+            baiduTTS.TestTTS(answer);
         }
         else
         {
