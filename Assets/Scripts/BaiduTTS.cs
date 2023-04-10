@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using System.IO;
 using NAudio;
 using NAudio.Wave;
+using UnityEngine.Networking;
 
 /// <summary>
 /// 用来转换语音，将文字转成语音。
@@ -35,7 +36,7 @@ public class BaiduTTS : MonoBehaviour
     //上传数据的url，
     private string url;
     //所需要转成语音的信息文本
-    private string Speak = "生前何必久睡，死后自会长眠";
+    private string Speak = "我的名字叫做袁靖轩，是一名22岁的大学生，喜欢唱、跳、rap";
     private const string grant_Type = "client_credentials";
     //百度appkey
     private const string client_ID = "FqgX7zARn2AiCDRYBNMG0B4E";
@@ -119,15 +120,16 @@ public class BaiduTTS : MonoBehaviour
         TokenForm.AddField("client_id", client_ID);
         TokenForm.AddField("client_secret", client_Secret);
 
-        WWW getTW = new WWW(url, TokenForm);
-        yield return getTW;
+        UnityWebRequest getTW = UnityWebRequest.Post(url, TokenForm);
+        getTW.downloadHandler = new DownloadHandlerBuffer();
+        yield return getTW.SendWebRequest();
         if (getTW.isDone)
         {
             //Debug.Log (getTW.text);
 
             if (getTW.error == null)
             {
-                tok = JsonMapper.ToObject(getTW.text)["access_token"].ToString();
+                tok = JsonMapper.ToObject(getTW.downloadHandler.text)["access_token"].ToString();
 
             }
             else
@@ -143,19 +145,19 @@ public class BaiduTTS : MonoBehaviour
     /// <param name="url">URL.</param>
     private IEnumerator Loading(string url)
     {
-        WWW loadingAudio = new WWW(url);
-        yield return loadingAudio;
+        UnityWebRequest loadingAudio = UnityWebRequest.Get(url);
+        loadingAudio.downloadHandler = new DownloadHandlerBuffer();
+        yield return loadingAudio.SendWebRequest();
         if (loadingAudio.error == null)
         {
             if (loadingAudio.isDone)
             {
-                aud.clip = WavUtility.ToAudioClip(loadingAudio.bytes);
-                Debug.Log(string.Format("Channels:{0}", aud.clip.channels));
+                aud.clip = WavUtility.ToAudioClip(loadingAudio.downloadHandler.data);
                 // 输出音频文件
                 using (WaveFileWriter writer =
                     new WaveFileWriter(wavOutputPath, new WaveFormat(aud.clip.frequency, aud.clip.channels)))
                 {
-                    writer.Write(loadingAudio.bytes, 0, loadingAudio.bytes.Length);
+                    writer.Write(loadingAudio.downloadHandler.data, 0, loadingAudio.downloadHandler.data.Length);
                 }
                 aud.Play();    
             }
