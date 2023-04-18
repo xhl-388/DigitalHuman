@@ -54,6 +54,8 @@ public class BaiduTTS : MonoBehaviour
 
     string wavOutputPath = "./test.wav";
 
+    RemoteFace remoteFace;
+
     private void Awake()
     {
         var data = File.ReadAllLines("./Assets/BaiduTTS_Key.txt");
@@ -71,6 +73,7 @@ public class BaiduTTS : MonoBehaviour
         aud.playOnAwake = false;
         StartCoroutine(GetToken(getTokenAPIPath));
 
+        remoteFace = GetComponent<RemoteFace>();
     }
 
     private void Update()
@@ -124,21 +127,23 @@ public class BaiduTTS : MonoBehaviour
         TokenForm.AddField("client_id", client_ID);
         TokenForm.AddField("client_secret", client_Secret);
 
-        UnityWebRequest getTW = UnityWebRequest.Post(url, TokenForm);
-        getTW.downloadHandler = new DownloadHandlerBuffer();
-        yield return getTW.SendWebRequest();
-        if (getTW.isDone)
+        using (UnityWebRequest getTW = UnityWebRequest.Post(url, TokenForm))
         {
-            //Debug.Log (getTW.text);
-
-            if (getTW.error == null)
+            getTW.downloadHandler = new DownloadHandlerBuffer();
+            yield return getTW.SendWebRequest();
+            if (getTW.isDone)
             {
-                tok = JsonMapper.ToObject(getTW.downloadHandler.text)["access_token"].ToString();
+                //Debug.Log (getTW.text);
 
-            }
-            else
-            {
-                Debug.LogError(getTW.error);
+                if (getTW.error == null)
+                {
+                    tok = JsonMapper.ToObject(getTW.downloadHandler.text)["access_token"].ToString();
+
+                }
+                else
+                {
+                    Debug.LogError(getTW.error);
+                }
             }
         }
     }
@@ -149,28 +154,30 @@ public class BaiduTTS : MonoBehaviour
     /// <param name="url">URL.</param>
     private IEnumerator Loading(string url)
     {
-        UnityWebRequest loadingAudio = UnityWebRequest.Get(url);
-        loadingAudio.downloadHandler = new DownloadHandlerBuffer();
-        yield return loadingAudio.SendWebRequest();
-        if (loadingAudio.error == null)
+        using (UnityWebRequest loadingAudio = UnityWebRequest.Get(url))
         {
-            if (loadingAudio.isDone)
+            loadingAudio.downloadHandler = new DownloadHandlerBuffer();
+            yield return loadingAudio.SendWebRequest();
+            if (loadingAudio.error == null)
             {
-                aud.clip = WavUtility.ToAudioClip(loadingAudio.downloadHandler.data);
-                // 输出音频文件
-                using (WaveFileWriter writer =
-                    new WaveFileWriter(wavOutputPath, new WaveFormat(aud.clip.frequency, aud.clip.channels)))
+                if (loadingAudio.isDone)
                 {
-                    writer.Write(loadingAudio.downloadHandler.data, 0, loadingAudio.downloadHandler.data.Length);
+                    //aud.clip = WavUtility.ToAudioClip(loadingAudio.downloadHandler.data);
+                    // 输出音频文件
+                    //using (WaveFileWriter writer =
+                    //    new WaveFileWriter(wavOutputPath, new WaveFormat(aud.clip.frequency, aud.clip.channels)))
+                    //{
+                    //    writer.Write(loadingAudio.downloadHandler.data, 0, loadingAudio.downloadHandler.data.Length);
+                    //}
+                    //aud.Play();
+                    remoteFace.GetFaceData(loadingAudio.downloadHandler.data);
                 }
-                aud.Play();    
-            }
-            else
-            {
-                Debug.LogError(loadingAudio.error);
+                else
+                {
+                    Debug.LogError(loadingAudio.error);
+                }
             }
         }
-
     }
 
     //Button响应事件

@@ -21,42 +21,49 @@ public class ChatGPT : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(PostRequest("Say this is a test"));
+        //StartCoroutine(PostRequest("Say this is a test"));
     }
+
     IEnumerator PostRequest(string question)
     {
         // 创建要上传的json文本
         Hashtable tab = new Hashtable();
         tab.Add("model", "text-davinci-003");
-        tab.Add("prompt", "我该怎么赚钱？");
+        tab.Add("prompt", question);
         tab.Add("max_tokens", 4000);
         string uploadStr = JsonMapper.ToJson(tab);
         Debug.Log(uploadStr);
 
         // 创建POST请求
-        UnityWebRequest webRequest = new UnityWebRequest(URL,"POST");
-        webRequest.SetRequestHeader("Content-Type", "application/json");
-        webRequest.SetRequestHeader("Authorization", "Bearer " + API_KEY);
-        webRequest.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(uploadStr));
-        webRequest.downloadHandler = new DownloadHandlerBuffer();
-
-        // 发送请求
-        yield return webRequest.SendWebRequest();
-
-        // 处理响应
-        if (webRequest.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest webRequest = new UnityWebRequest(URL, "POST"))
         {
-            string responseText = webRequest.downloadHandler.text;
-            string answer =(string)JsonMapper.ToObject(responseText)["choices"][0]["text"];
-            Debug.Log("Response: " + responseText);
-            Debug.Log("Ans: " + answer);
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            webRequest.SetRequestHeader("Authorization", "Bearer " + API_KEY);
+            webRequest.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(uploadStr));
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
 
-            baiduTTS.TestTTS(answer);
-        }
-        else
-        {
-            Debug.LogError("Error: " + webRequest.error);
+            // 发送请求
+            yield return webRequest.SendWebRequest();
+
+            // 处理响应
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                string responseText = webRequest.downloadHandler.text;
+                string answer = (string)JsonMapper.ToObject(responseText)["choices"][0]["text"];
+                Debug.Log("Response: " + responseText);
+                Debug.Log("Ans: " + answer);
+
+                baiduTTS.TestTTS(answer);
+            }
+            else
+            {
+                Debug.LogError("Error: " + webRequest.error);
+            }
         }
     }
 
+    public void StartProcess(string str)
+    {
+        StartCoroutine(PostRequest(str));
+    }
 }

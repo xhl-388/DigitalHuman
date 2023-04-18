@@ -74,3 +74,4 @@ crashlytics-build.properties
 # keys
 /Assets/BaiduTTS_Key.txt*
 /Assets/ChatGPT_Key.txt*
+/Assets/remote_host.txt*
