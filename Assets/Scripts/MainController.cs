@@ -41,6 +41,11 @@ public class MainController : MonoBehaviour
         isProcessing = false;
     }
 
+    private string OptimizeString(string str)
+    {
+        return str.Replace("\n", " ").Replace('.', ' ');
+    } 
+
     #region CallBacks
     private void UserInput(string text)
     {
@@ -56,7 +61,9 @@ public class MainController : MonoBehaviour
 
     private void TTS(string str)
     {
-        baiduTTS.TextToSpeech(str);
+        string opStr = OptimizeString(str);
+        File.AppendAllText("./Assets/Logs/chatgpt.txt", "\n---------------\nold:" + str + "\nnew:"+opStr);
+        baiduTTS.TextToSpeech(opStr);
     }
 
     private void SpeechToVideo(byte[] audio)
