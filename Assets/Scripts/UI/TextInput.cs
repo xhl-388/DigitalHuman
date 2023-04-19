@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TextInput : MonoBehaviour
 {
     [HideInInspector]
-    public Action<string> onEndEdit;
+    public UnityEvent<string> OnEndEdit = new UnityEvent<string>();
 
     TMP_InputField inputField;
 
@@ -15,9 +16,9 @@ public class TextInput : MonoBehaviour
     {
         inputField = GetComponent<TMP_InputField>();
     }
-    public void OnEndEdit(string text)
+    public void OnEndEditStr(string text)
     {
-        onEndEdit?.Invoke(inputField.text);
+        OnEndEdit?.Invoke(inputField.text);
         inputField.text = "";
     }
 }

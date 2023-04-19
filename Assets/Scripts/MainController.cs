@@ -1,25 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class MainController : MonoBehaviour
 {
     ChatGPT chatGPT = null;
     BaiduTTS baiduTTS = null;
+    RemoteFace remoteFace = null;
     [SerializeField]
     private Transform textInputT;
     TextInput textInput = null;
+    bool isProcessing  = false;
+
+    [SerializeField]
+    Transform targetVideoUI;
+    VideoPlayer vPlayer;
+    const string VIDEO_PATH = "./Assets/Resources/Video/test";
+    int videoCnt = 0;
+    string targetVideoName { get { return VIDEO_PATH + videoCnt + ".mp4"; } }
 
     private void Awake()
     {
         chatGPT = GetComponent<ChatGPT>();
         baiduTTS = GetComponent<BaiduTTS>();
         textInput = textInputT.GetComponent<TextInput>();
-        textInput.onEndEdit += UserInput;
+        remoteFace = GetComponent<RemoteFace>();
+        vPlayer = targetVideoUI.GetComponent<VideoPlayer>();
+
+        textInput.OnEndEdit.AddListener(UserInput);
+        chatGPT.OnGotAns.AddListener(TTS);
+        baiduTTS.OnGotSpeech.AddListener(SpeechToVideo);
+        remoteFace.OnGotVideo.AddListener(PlayVideo);
     }
-    public void UserInput(string text)
+
+    IEnumerator WaitForEndOfVideo()
     {
+        yield return new WaitWhile(() => vPlayer.isPlaying);
+        isProcessing = false;
+    }
+
+    #region CallBacks
+    private void UserInput(string text)
+    {
+        if(isProcessing)
+        {
+            Debug.LogError("Task is running, do not input");
+            return;
+        }
+        isProcessing = true;
         chatGPT.StartProcess(text);
         Debug.LogFormat("InputText: {0}", text);
     }
+
+    private void TTS(string str)
+    {
+        baiduTTS.TextToSpeech(str);
+    }
+
+    private void SpeechToVideo(byte[] audio)
+    {
+        remoteFace.GetFaceData(audio);
+    }
+
+    private void PlayVideo(byte[] video)
+    {
+        File.WriteAllBytes(targetVideoName, video);
+        vPlayer.url = targetVideoName;
+        videoCnt++;
+        vPlayer.Play();
+        StartCoroutine(WaitForEndOfVideo());
+    }
+    #endregion
 }

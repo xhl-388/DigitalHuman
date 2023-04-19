@@ -724,7 +724,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 834837868}
         m_TargetAssemblyTypeName: TextInput, Assembly-CSharp
-        m_MethodName: OnEndEdit
+        m_MethodName: OnEndEditStr
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -820,6 +820,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b5a1d464100084db2be2cb419e9b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEndEdit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1042567263
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,7 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -980,7 +983,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
@@ -1101,7 +1104,9 @@ MonoBehaviour:
   pit: 5
   vol: 5
   per: 103
-  inputField: {fileID: 0}
+  OnGotSpeech:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1440864850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,6 +1119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d030b579b59870a4fb184ea631db9594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnGotAns:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1440864851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textInputT: {fileID: 834837864}
+  targetVideoUI: {fileID: 1082697994}
 --- !u!114 &1440864852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1139,7 +1148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3765fc831b82c024aa3026abd119d07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetVideoUI: {fileID: 1082697994}
+  OnGotVideo:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1535185715
 GameObject:
   m_ObjectHideFlags: 0

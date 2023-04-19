@@ -8,20 +8,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 using LitJson;
 using UnityEngine.Video;
+using UnityEngine.Events;
 
 public class RemoteFace : MonoBehaviour
 {
     string REMOTE_NAME;
     byte[] targetImage;
-    [SerializeField]
-    Transform targetVideoUI;
-    VideoPlayer vPlayer;
+    [HideInInspector]
+    public UnityEvent<byte[]> OnGotVideo = new UnityEvent<byte[]>();
 
     private void Awake()
     {
         REMOTE_NAME = File.ReadAllLines("./Assets/remote_host.txt")[0];
         targetImage = File.ReadAllBytes("./Assets/Resources/happy.png");
-        vPlayer = targetVideoUI.GetComponent<VideoPlayer>();
     }
 
     IEnumerator _GetFaceData(byte[] wav)
@@ -40,19 +39,15 @@ public class RemoteFace : MonoBehaviour
             request.downloadHandler = new DownloadHandlerBuffer();
 
             request.timeout = 3600;
-            request.chunkedTransfer = false;
             request.useHttpContinue = false;
 
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                string t = request.downloadHandler.text;
-                string mp4Str = (string)JsonMapper.ToObject(t)["mp4"];
+                string mp4Str = (string)JsonMapper.ToObject(request.downloadHandler.text)["mp4"];
                 byte[] mp4Data = Convert.FromBase64String(mp4Str);
-                File.WriteAllBytes("./Assets/Resources/test.mp4", mp4Data);
-                vPlayer.clip = Resources.Load<VideoClip>("test");
-                vPlayer.Play();
+                OnGotVideo?.Invoke(mp4Data);
             }else
             {
                 Debug.LogError("Error: " + request.error);
@@ -64,13 +59,4 @@ public class RemoteFace : MonoBehaviour
     {
         StartCoroutine(_GetFaceData(wav));
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Q))
-    //    {
-    //        vPlayer.clip = Resources.Load<VideoClip>("test");
-    //        vPlayer.Play();
-    //    }
-    //}
 }

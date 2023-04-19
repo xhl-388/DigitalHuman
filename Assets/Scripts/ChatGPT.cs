@@ -6,22 +6,19 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
+using UnityEngine.Events;
 
 public class ChatGPT : MonoBehaviour
 {
     private const string URL = "https://api.openai.com/v1/completions";
     private string API_KEY = "";
-    private BaiduTTS baiduTTS = null;
+
+    [HideInInspector]
+    public UnityEvent<string> OnGotAns = new UnityEvent<string>();
 
     private void Awake()
     {
         API_KEY = File.ReadAllLines("./Assets/ChatGPT_Key.txt")[0];
-
-        baiduTTS = GetComponent<BaiduTTS>();
-    }
-    private void Start()
-    {
-        //StartCoroutine(PostRequest("Say this is a test"));
     }
 
     IEnumerator PostRequest(string question)
@@ -50,10 +47,9 @@ public class ChatGPT : MonoBehaviour
             {
                 string responseText = webRequest.downloadHandler.text;
                 string answer = (string)JsonMapper.ToObject(responseText)["choices"][0]["text"];
-                Debug.Log("Response: " + responseText);
                 Debug.Log("Ans: " + answer);
 
-                baiduTTS.TestTTS(answer);
+                OnGotAns?.Invoke(answer);
             }
             else
             {

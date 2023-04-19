@@ -9,6 +9,7 @@ using System.IO;
 using NAudio;
 using NAudio.Wave;
 using UnityEngine.Networking;
+using UnityEngine.Events;
 
 /// <summary>
 /// 用来转换语音，将文字转成语音。
@@ -45,45 +46,17 @@ public class BaiduTTS : MonoBehaviour
     //获取百度令牌的url
     private const string getTokenAPIPath = "https://aip.baidubce.com/oauth/2.0/token?";
     #endregion
-    //测试
-    public InputField inputField;
-    AudioSource aud;
 
     bool bTokenReady { get { return tok!=null; } }
-    bool bUsed = false;
-
-    string wavOutputPath = "./test.wav";
-
-    RemoteFace remoteFace;
+    [HideInInspector]
+    public UnityEvent<byte[]> OnGotSpeech = new UnityEvent<byte[]>();
 
     private void Awake()
     {
         var data = File.ReadAllLines("./Assets/BaiduTTS_Key.txt");
         client_ID = data[0];
         client_Secret = data[1];
-
-        if (GetComponent<AudioSource>() == null)
-        {
-            aud = gameObject.AddComponent<AudioSource>();
-        }
-        else
-        {
-            aud = gameObject.GetComponent<AudioSource>();
-        }
-        aud.playOnAwake = false;
         StartCoroutine(GetToken(getTokenAPIPath));
-
-        remoteFace = GetComponent<RemoteFace>();
-    }
-
-    private void Update()
-    {
-        // for test
-        //if (bTokenReady && !bUsed)
-        //{
-        //    bUsed = true;
-        //    TestTTS(Speak);
-        //}
     }
 
     /// <summary>
@@ -138,7 +111,6 @@ public class BaiduTTS : MonoBehaviour
                 if (getTW.error == null)
                 {
                     tok = JsonMapper.ToObject(getTW.downloadHandler.text)["access_token"].ToString();
-
                 }
                 else
                 {
@@ -154,6 +126,11 @@ public class BaiduTTS : MonoBehaviour
     /// <param name="url">URL.</param>
     private IEnumerator Loading(string url)
     {
+        if(!bTokenReady) 
+        {
+            Debug.LogError("Baidu TTS not ready but you are still accessing it");
+            yield break;
+        }
         using (UnityWebRequest loadingAudio = UnityWebRequest.Get(url))
         {
             loadingAudio.downloadHandler = new DownloadHandlerBuffer();
@@ -162,15 +139,7 @@ public class BaiduTTS : MonoBehaviour
             {
                 if (loadingAudio.isDone)
                 {
-                    //aud.clip = WavUtility.ToAudioClip(loadingAudio.downloadHandler.data);
-                    // 输出音频文件
-                    //using (WaveFileWriter writer =
-                    //    new WaveFileWriter(wavOutputPath, new WaveFormat(aud.clip.frequency, aud.clip.channels)))
-                    //{
-                    //    writer.Write(loadingAudio.downloadHandler.data, 0, loadingAudio.downloadHandler.data.Length);
-                    //}
-                    //aud.Play();
-                    remoteFace.GetFaceData(loadingAudio.downloadHandler.data);
+                    OnGotSpeech?.Invoke(loadingAudio.downloadHandler.data);
                 }
                 else
                 {
@@ -180,20 +149,7 @@ public class BaiduTTS : MonoBehaviour
         }
     }
 
-    //Button响应事件
-    public void StartStringToAudio()
-    {
-        tex = "";
-        Speak = inputField.text;
-        Debug.Log(Speak);
-        //文本编码
-        StringToEncodingUTF8(Speak);
-        //Debug.Log ("编码后得到的信息："+tex);
-
-        StartCoroutine(Loading(url));
-    }   //MP3 --- wav
-
-    public void TestTTS(string input)
+    public void TextToSpeech(string input)
     {
         tex = "";
         Speak = input;
