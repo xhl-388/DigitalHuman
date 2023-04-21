@@ -97,3 +97,67 @@ old:
 
 5.总结归纳：定期总结归纳学习成果，帮助记忆重点知识并加深印象，加快理解新概念的过程。
 new:  1 复习课程基础知识：全面温习高中所学过的物理知识，特别是矢量力学和力学方面的内容，是大学物理学习的基础课程。  2 把握物理规律：仔细观察、理解物理现象的物理本质和不同方面的规律性，弄清规律之间的内在联系，有助于学习新概念、新原理。  3 积极参与实验：掌握实验技术和积累操作经验，深入理解物理现象背后的原理。  4 练习题：通过定期例题练习学习，对概念加深理解、对规律巩固记忆，以及培养解决实际问题的能力。  5 总结归纳：定期总结归纳学习成果，帮助记忆重点知识并加深印象，加快理解新概念的过程。
+---------------
+old:
+
+你好！
+new:  你好！
+---------------
+old:，有什么需要帮忙的吗？
+
+是的，我有一个重要的建议。我想建议在公司的服务进程中增加一个顾客培训模块，以确保我们的服务质量达到最高标准。
+new:，有什么需要帮忙的吗？  是的，我有一个重要的建议。我想建议在公司的服务进程中增加一个顾客培训模块，以确保我们的服务质量达到最高标准。
+---------------
+old:，我有一个想要投资的机会
+
+你应该首先确定你的投资目标和风险承受能力，这将有助于更好地了解投资行业的机会和风险等因素。其次，尽可能了解投资过程，包括市场状况、投资组合和投资策略等。此外，应定期对所选投资进行监控，以确保投资回报满足所有目标。最后，阅读证券或金融领域的咨询并咨询金融顾问，以获得更多针对投资机会的专业建议。
+new:，我有一个想要投资的机会  你应该首先确定你的投资目标和风险承受能力，这将有助于更好地了解投资行业的机会和风险等因素。其次，尽可能了解投资过程，包括市场状况、投资组合和投资策略等。此外，应定期对所选投资进行监控，以确保投资回报满足所有目标。最后，阅读证券或金融领域的咨询并咨询金融顾问，以获得更多针对投资机会的专业建议。
+---------------
+old:
+
+1、学习c++，首先，要具备C++的编程基础，如懂得变量、循环、条件判断等；
+2、看书：学习C++最重要的是要去看书，看好的C++书籍，书中比较完整的讲解了学习C++的基础知识，对于学习很有帮助；
+3、看视频：找一些视频课程，有以视频形式演示，一步步讲解C++的使用，让学习者清楚实践的运用与理论相结合；
+4、编程实践：C++学习过程中，最重要的要注重实践，只有多写多练，才能强化学习，及时掌握基本概念；
+5、看文档：充分利用互联网资源，查找C++的相关文档，不断探究C++的知识点，为学习增加实践经验；
+6、多与人交流：可以在线下和熟悉的朋友一起练习，多讨论学习过程中遇到的问题，互相探讨学习方法，共同进步。
+new:  1、学习c++，首先，要具备C++的编程基础，如懂得变量、循环、条件判断等； 2、看书：学习C++最重要的是要去看书，看好的C++书籍，书中比较完整的讲解了学习C++的基础知识，对于学习很有帮助； 3、看视频：找一些视频课程，有以视频形式演示，一步步讲解C++的使用，让学习者清楚实践的运用与理论相结合； 4、编程实践：C++学习过程中，最重要的要注重实践，只有多写多练，才能强化学习，及时掌握基本概念； 5、看文档：充分利用互联网资源，查找C++的相关文档，不断探究C++的知识点，为学习增加实践经验； 6、多与人交流：可以在线下和熟悉的朋友一起练习，多讨论学习过程中遇到的问题，互相探讨学习方法，共同进步。
+---------------
+old:Please select your country: United States Argentina Australia Austria Bahrain Belarus Belgium Brazil Brunei Bulgaria Canada Chile China Colombia Croatia Cyprus Czechia Czechoslovakia (1945-1992) Denmark Dominican Republic East Germany (1949-1990) Estonia Finland France Georgia Germany Greece Hong Kong Hungary Iceland India Indonesia Iran Ireland Israel Italy Japan Kuwait Latvia Lithuania Luxembourg Macau Malaysia Malta Mexico The Netherlands New Zealand North Korea North Macedonia Norway Oman Philippines Poland Portugal Qatar Romania Russia Saudi Arabia Serbia Singapore Slovakia Slovenia South Korea Spain Sweden Switzerland Taiwan Thailand Turkey Ukraine United Arab Emirates United Kingdom Uruguay Vietnam U.S.S.R. (1922-1991) Yugoslavia (1945-1992) Africa » Cameroon Africa » South Africa Worldwide Other
+
+Not an American user?
+
+Description
+
+Steam Store Description (from Ad Blurbs)
+
+Screenshots
+
+Which paths will you choose to reach the Castle’s deep labyrinths and what mistery lies within the fortress?is a 2D shooter with run and gun mechanics in which you'll discover the real objectives of the missions. The scenarios are well crafted with detailed pixel art and various traps that will challenge both your skills and adaptability.You are a warrior of the king elected to explore and purpose a way to defeat the enemy in the modern R-TECH Lab, also known as “The Castle”. You'll encounter enemies and allies, explore misterious chambers and a wide variety of scenarios filled with traps using your weapon and special items.You'll choose the path of honorable diplomacy or that of insatiable combat power.The story although generic is well done and with a nice twist at the end.Each level you complete get you new skills, items and power ups that you'll use to access locked areas like mines and laboratories. In one of the levels you will even get access to a tank.
+
+There are no Windows user screenshots for this game.
+
+There are 9 other screenshots from other versions of this game or official promotional screenshots.
+
+Promo Images
+
+Part of the Following Groups
+
+User Reviews
+
+There are no reviews for this game.
+
+Critic Reviews
+
+There are no critic reviews for this game.
+
+Forums
+
+There are currently no topics for this game.
+
+Trivia
+
+There is no trivia on file for this game.
+
+Related Web Sites
+new:Please select your country: United States Argentina Australia Austria Bahrain Belarus Belgium Brazil Brunei Bulgaria Canada Chile China Colombia Croatia Cyprus Czechia Czechoslovakia (1945-1992) Denmark Dominican Republic East Germany (1949-1990) Estonia Finland France Georgia Germany Greece Hong Kong Hungary Iceland India Indonesia Iran Ireland Israel Italy Japan Kuwait Latvia Lithuania Luxembourg Macau Malaysia Malta Mexico The Netherlands New Zealand North Korea North Macedonia Norway Oman Philippines Poland Portugal Qatar Romania Russia Saudi Arabia Serbia Singapore Slovakia Slovenia South Korea Spain Sweden Switzerland Taiwan Thailand Turkey Ukraine United Arab Emirates United Kingdom Uruguay Vietnam U S S R  (1922-1991) Yugoslavia (1945-1992) Africa » Cameroon Africa » South Africa Worldwide Other  Not an American user?  Description  Steam Store Description (from Ad Blurbs)  Screenshots  Which paths will you choose to reach the Castle’s deep labyrinths and what mistery lies within the fortress?is a 2D shooter with run and gun mechanics in which you'll discover the real objectives of the missions  The scenarios are well crafted with detailed pixel art and various traps that will challenge both your skills and adaptability You are a warrior of the king elected to explore and purpose a way to defeat the enemy in the modern R-TECH Lab, also known as “The Castle”  You'll encounter enemies and allies, explore misterious chambers and a wide variety of scenarios filled with traps using your weapon and special items You'll choose the path of honorable diplomacy or that of insatiable combat power The story although generic is well done and with a nice twist at the end Each level you complete get you new skills, items and power ups that you'll use to access locked areas like mines and laboratories  In one of the levels you will even get access to a tank   There are no Windows user screenshots for this game   There are 9 other screenshots from other versions of this game or official promotional screenshots   Promo Images  Part of the Following Groups  User Reviews  There are no reviews for this game   Critic Reviews  There are no critic reviews for this game   Forums  There are currently no topics for this game   Trivia  There is no trivia on file for this game   Related Web Sites

@@ -37,7 +37,7 @@ public class BaiduTTS : MonoBehaviour
     //上传数据的url，
     private string url;
     //所需要转成语音的信息文本
-    private string Speak = "我的名字叫做袁靖轩，是一名22岁的大学生，喜欢唱、跳、rap";
+    private string Speak = "";
     private const string grant_Type = "client_credentials";
     //百度appkey
     private string client_ID = "";
