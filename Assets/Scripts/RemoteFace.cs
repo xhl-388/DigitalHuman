@@ -1,14 +1,11 @@
+using LitJson;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Text;
 using UnityEngine;
-using UnityEngine.Networking;
-using LitJson;
-using UnityEngine.Video;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
 public class RemoteFace : MonoBehaviour
 {
@@ -33,7 +30,7 @@ public class RemoteFace : MonoBehaviour
 
         Debug.Log(data);
 
-        using(UnityWebRequest request = new UnityWebRequest(REMOTE_NAME,"POST"))
+        using (UnityWebRequest request = new UnityWebRequest(REMOTE_NAME, "POST"))
         {
             request.SetRequestHeader("Content-Type", "application/json");
             request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(data));
@@ -49,7 +46,8 @@ public class RemoteFace : MonoBehaviour
                 string mp4Str = (string)JsonMapper.ToObject(request.downloadHandler.text)["mp4"];
                 byte[] mp4Data = Convert.FromBase64String(mp4Str);
                 OnGotVideo?.Invoke(mp4Data);
-            }else
+            }
+            else
             {
                 Debug.LogError("Error: " + request.error);
             }

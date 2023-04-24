@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Video;
@@ -12,7 +11,7 @@ public class MainController : MonoBehaviour
     [SerializeField]
     private Transform textInputT;
     TextInput textInput = null;
-    bool isProcessing  = false;
+    bool isProcessing = false;
 
     [SerializeField]
     Transform targetVideoUI;
@@ -44,12 +43,12 @@ public class MainController : MonoBehaviour
     private string OptimizeString(string str)
     {
         return str.Replace("\n", " ").Replace('.', ' ');
-    } 
+    }
 
     #region CallBacks
     private void UserInput(string text)
     {
-        if(isProcessing)
+        if (isProcessing)
         {
             Debug.LogError("Task is running, do not input");
             return;
@@ -62,7 +61,7 @@ public class MainController : MonoBehaviour
     private void TTS(string str)
     {
         string opStr = OptimizeString(str);
-        File.AppendAllText("./Assets/Logs/chatgpt.txt", "\n---------------\nold:" + str + "\nnew:"+opStr);
+        File.AppendAllText("./Assets/Logs/chatgpt.txt", "\n---------------\nold:" + str + "\nnew:" + opStr);
         baiduTTS.TextToSpeech(opStr);
     }
 

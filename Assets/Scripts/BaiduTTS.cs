@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using LitJson;
-using System.Text;
 using System;
-using UnityEngine.UI;
+using System.Collections;
 using System.IO;
-using NAudio;
-using NAudio.Wave;
-using UnityEngine.Networking;
+using System.Text;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
 /// <summary>
 /// 用来转换语音，将文字转成语音。
@@ -40,7 +36,7 @@ public class BaiduTTS : MonoBehaviour
     private const string getTokenAPIPath = "https://aip.baidubce.com/oauth/2.0/token?";
     #endregion
 
-    bool bTokenReady { get { return tok!=null; } }
+    bool bTokenReady { get { return tok != null; } }
     ConfigController ccontroller;
     [HideInInspector]
     public UnityEvent<byte[]> OnGotSpeech = new UnityEvent<byte[]>();
@@ -71,14 +67,14 @@ public class BaiduTTS : MonoBehaviour
 
         }
         //拼接上传的url
-        url = "http://tsn.baidu.com/text2audio?tex=" + tex 
-            + "&lan=" +lan 
-            + "&cuid=" + cuid 
-            + "&ctp=" + ctp 
-            + "&tok=" + tok 
-            + "&per=" + config.per 
-            + "&spd=" + config.spd 
-            + "&pit=" + config.pit 
+        url = "http://tsn.baidu.com/text2audio?tex=" + tex
+            + "&lan=" + lan
+            + "&cuid=" + cuid
+            + "&ctp=" + ctp
+            + "&tok=" + tok
+            + "&per=" + config.per
+            + "&spd=" + config.spd
+            + "&pit=" + config.pit
             + "&aue=" + aue
             + "&vol=" + config.vol + "";
         Debug.Log("Token:" + tok);
@@ -122,7 +118,7 @@ public class BaiduTTS : MonoBehaviour
     /// <param name="url">URL.</param>
     private IEnumerator Loading(string url)
     {
-        if(!bTokenReady) 
+        if (!bTokenReady)
         {
             Debug.LogError("Baidu TTS not ready but you are still accessing it");
             yield break;
@@ -176,7 +172,7 @@ public class BaiduTTS : MonoBehaviour
                 Debug.LogError("Invalid input of string prop");
                 break;
         }
-        Debug.LogFormat("Prop {0} changed to {1}",prop,value);
+        Debug.LogFormat("Prop {0} changed to {1}", prop, value);
     }
 
     public void SaveTTSConfig()
