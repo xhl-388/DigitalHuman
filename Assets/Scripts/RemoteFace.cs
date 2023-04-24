@@ -20,7 +20,8 @@ public class RemoteFace : MonoBehaviour
     private void Awake()
     {
         REMOTE_NAME = File.ReadAllLines("./Assets/remote_host.txt")[0];
-        targetImage = File.ReadAllBytes("./Assets/Resources/happy.png");
+        ConfigController configController = GameObject.FindWithTag("Config").GetComponent<ConfigController>();
+        targetImage = configController.CurImage;
     }
 
     IEnumerator _GetFaceData(byte[] wav)

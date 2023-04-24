@@ -16,14 +16,7 @@ using UnityEngine.Events;
 /// </summary>
 public class BaiduTTS : MonoBehaviour
 {
-    //语速 0-9 5为中语速
-    public string spd = "5";
-    //音调 0-9 5为中语调
-    public string pit = "5";
-    //音量 0-9 5为中音量
-    public string vol = "5";
-    //发音 0-4 发音人选择, 0为女声，1为男声，3为情感合成-度逍遥，4为情感合成-度丫丫，默认为普通女声
-    public string per = "103";
+    private ImageConfig config;
 
     #region 字段、属性
     private string tex;
@@ -57,6 +50,8 @@ public class BaiduTTS : MonoBehaviour
         client_ID = data[0];
         client_Secret = data[1];
         StartCoroutine(GetToken(getTokenAPIPath));
+        ConfigController configController = GameObject.FindWithTag("Config").GetComponent<ConfigController>();
+        config = configController.GetDefaultImageConfig();
     }
 
     /// <summary>
@@ -80,11 +75,11 @@ public class BaiduTTS : MonoBehaviour
             + "&cuid=" + cuid 
             + "&ctp=" + ctp 
             + "&tok=" + tok 
-            + "&per=" + per 
-            + "&spd=" + spd 
-            + "&pit=" + pit 
+            + "&per=" + config.per 
+            + "&spd=" + config.spd 
+            + "&pit=" + config.pit 
             + "&aue=" + aue
-            + "&vol=" + vol + "";
+            + "&vol=" + config.vol + "";
         Debug.Log("Token:" + tok);
     }
 
