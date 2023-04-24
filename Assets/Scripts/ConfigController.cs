@@ -64,6 +64,20 @@ public class ConfigController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    void ReadConfig(string path, ref  ImageConfig config)
+    {
+        byte[] cdata = File.ReadAllBytes(path);
+        string sdata = Encoding.UTF8.GetString(cdata);
+        JsonData jdata = JsonMapper.ToObject(sdata);
+        config = new ImageConfig((string)jdata["spd"], (string)jdata["pit"],
+        (string)jdata["vol"], (string)jdata["per"]);
+    }
+
+    void WriteConfig(string path, ImageConfig config)
+    {
+        File.WriteAllText(path, JsonMapper.ToJson(config));
+    }
+
     void OnSceneLoaded(Scene scene,LoadSceneMode mode)
     {
         if(scene.name == "ImageSelect" && firstLoad)
@@ -83,20 +97,18 @@ public class ConfigController : MonoBehaviour
         {
             images.Add(File.ReadAllBytes(file.FullName));
             iNames.Add(file.Name);
-            Debug.LogFormat("Load Image File: {0}", file.Name);
+            // Debug.LogFormat("Load Image File: {0}", file.Name);
         }
-        byte[] cdata = File.ReadAllBytes(CONFIG_PATH + "/default.json");
-        string sdata = Encoding.UTF8.GetString(cdata);
-        JsonData jdata = JsonMapper.ToObject(sdata);
-        DefaultImageConfig = new ImageConfig((string)jdata["spd"], (string)jdata["pit"],
-        (string)jdata["vol"], (string)jdata["per"]);
+        ReadConfig(CONFIG_PATH + "/default.json",ref DefaultImageConfig);
     }
 
     void RefreshImage()
     {
         CurImage = images[curIndex];
-        bool success = texture.LoadImage(CurImage);
-        Debug.LogFormat("Load Image Res: {0}", success);
+        if(!texture.LoadImage(CurImage))
+        {
+            Debug.LogError("Image load failed:bytes to texture!");
+        }
     }
 
     public void ChangeIndex(bool isLeft)
@@ -122,14 +134,10 @@ public class ConfigController : MonoBehaviour
         string filePath = CONFIG_PATH + "/" + prefix + ".json";
         if(File.Exists(filePath))
         {
-            byte[] cdata = File.ReadAllBytes(filePath);
-            string sdata = Encoding.UTF8.GetString(cdata);
-            JsonData jdata = JsonMapper.ToObject(sdata);
-            CurImageConfig = new ImageConfig((string)jdata["spd"], (string)jdata["pit"], 
-                (string)jdata["vol"], (string)jdata["per"]);
+            ReadConfig(filePath,ref CurImageConfig);
         }else
         {
-            File.WriteAllText(filePath, JsonMapper.ToJson(DefaultImageConfig));
+            WriteConfig(filePath, DefaultImageConfig);
             CurImageConfig = DefaultImageConfig;
         }
         SceneManager.LoadScene("Main");
@@ -138,5 +146,12 @@ public class ConfigController : MonoBehaviour
     public ImageConfig GetDefaultImageConfig()
     {
         return DefaultImageConfig;
+    }
+
+    public void SaveTTSConfig(ImageConfig cfg)
+    {
+        string prefix = iNames[curIndex].Split('.')[0];
+        string filePath = CONFIG_PATH + "/" + prefix + ".json";
+        WriteConfig(filePath, cfg);
     }
 }

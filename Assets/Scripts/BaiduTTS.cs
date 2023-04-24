@@ -41,6 +41,7 @@ public class BaiduTTS : MonoBehaviour
     #endregion
 
     bool bTokenReady { get { return tok!=null; } }
+    ConfigController ccontroller;
     [HideInInspector]
     public UnityEvent<byte[]> OnGotSpeech = new UnityEvent<byte[]>();
 
@@ -50,8 +51,8 @@ public class BaiduTTS : MonoBehaviour
         client_ID = data[0];
         client_Secret = data[1];
         StartCoroutine(GetToken(getTokenAPIPath));
-        ConfigController configController = GameObject.FindWithTag("Config").GetComponent<ConfigController>();
-        config = configController.GetDefaultImageConfig();
+        ccontroller = GameObject.FindWithTag("Config").GetComponent<ConfigController>();
+        config = ccontroller.GetDefaultImageConfig();
     }
 
     /// <summary>
@@ -153,5 +154,33 @@ public class BaiduTTS : MonoBehaviour
         StringToEncodingUTF8(Speak);
 
         StartCoroutine(Loading(url));
+    }
+
+    public void ChangeConfig(string prop, int value)
+    {
+        switch (prop)
+        {
+            case "spd":
+                config.spd = value.ToString();
+                break;
+            case "pit":
+                config.pit = value.ToString();
+                break;
+            case "vol":
+                config.vol = value.ToString();
+                break;
+            case "per":
+                config.per = value.ToString();
+                break;
+            default:
+                Debug.LogError("Invalid input of string prop");
+                break;
+        }
+        Debug.LogFormat("Prop {0} changed to {1}",prop,value);
+    }
+
+    public void SaveTTSConfig()
+    {
+        ccontroller.SaveTTSConfig(config);
     }
 }
