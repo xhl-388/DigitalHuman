@@ -16,7 +16,7 @@ public class MainController : MonoBehaviour
     [SerializeField]
     Transform targetVideoUI;
     VideoPlayer vPlayer;
-    const string VIDEO_PATH = "./Assets/Resources/Video/test";
+    const string VIDEO_PATH = "Assets/Resources/Video/test";
     int videoCnt = 0;
     string targetVideoName { get { return VIDEO_PATH + videoCnt + ".mp4"; } }
 
@@ -52,6 +52,10 @@ public class MainController : MonoBehaviour
         {
             Debug.LogError("Task is running, do not input");
             return;
+        }else if(text==string.Empty)
+        {
+            Debug.LogWarning("ChatGPT got a question of empty string!");
+            return;
         }
         isProcessing = true;
         chatGPT.StartProcess(text);
@@ -61,7 +65,14 @@ public class MainController : MonoBehaviour
     private void TTS(string str)
     {
         string opStr = OptimizeString(str);
+        if(opStr==string.Empty)
+        {
+            Debug.LogWarning("TTS got input of empty string!");
+            return;
+        }
+#if UNITY_EDITOR
         File.AppendAllText("./Assets/Logs/chatgpt.txt", "\n---------------\nold:" + str + "\nnew:" + opStr);
+#endif
         baiduTTS.TextToSpeech(opStr);
     }
 

@@ -161,3 +161,87 @@ There is no trivia on file for this game.
 
 Related Web Sites
 new:Please select your country: United States Argentina Australia Austria Bahrain Belarus Belgium Brazil Brunei Bulgaria Canada Chile China Colombia Croatia Cyprus Czechia Czechoslovakia (1945-1992) Denmark Dominican Republic East Germany (1949-1990) Estonia Finland France Georgia Germany Greece Hong Kong Hungary Iceland India Indonesia Iran Ireland Israel Italy Japan Kuwait Latvia Lithuania Luxembourg Macau Malaysia Malta Mexico The Netherlands New Zealand North Korea North Macedonia Norway Oman Philippines Poland Portugal Qatar Romania Russia Saudi Arabia Serbia Singapore Slovakia Slovenia South Korea Spain Sweden Switzerland Taiwan Thailand Turkey Ukraine United Arab Emirates United Kingdom Uruguay Vietnam U S S R  (1922-1991) Yugoslavia (1945-1992) Africa » Cameroon Africa » South Africa Worldwide Other  Not an American user?  Description  Steam Store Description (from Ad Blurbs)  Screenshots  Which paths will you choose to reach the Castle’s deep labyrinths and what mistery lies within the fortress?is a 2D shooter with run and gun mechanics in which you'll discover the real objectives of the missions  The scenarios are well crafted with detailed pixel art and various traps that will challenge both your skills and adaptability You are a warrior of the king elected to explore and purpose a way to defeat the enemy in the modern R-TECH Lab, also known as “The Castle”  You'll encounter enemies and allies, explore misterious chambers and a wide variety of scenarios filled with traps using your weapon and special items You'll choose the path of honorable diplomacy or that of insatiable combat power The story although generic is well done and with a nice twist at the end Each level you complete get you new skills, items and power ups that you'll use to access locked areas like mines and laboratories  In one of the levels you will even get access to a tank   There are no Windows user screenshots for this game   There are 9 other screenshots from other versions of this game or official promotional screenshots   Promo Images  Part of the Following Groups  User Reviews  There are no reviews for this game   Critic Reviews  There are no critic reviews for this game   Forums  There are currently no topics for this game   Trivia  There is no trivia on file for this game   Related Web Sites
+---------------
+old:
+
+我现在正在做一些研究。
+new:  我现在正在做一些研究。
+---------------
+old:pip install django
+pip install pymongo
+pip install dnspython
+new:pip install django pip install pymongo pip install dnspython
+---------------
+old:?
+
+我正在和朋友一起玩桌游。
+new:?  我正在和朋友一起玩桌游。
+---------------
+old:GREEN TEA SALON
+
+“Without change there is no innovation, creativity, or incentive for improvement.
+
+Those who initiate change will have a better opportunity to manage the change that is inevitable.” -William Pollard
+
+At the Green Tea Salon, we are constantly striving to be better and provide superior services. We strive to bring in innovative beauty treatments, products and services to keep up with the latest trends. We always hire experienced and talented professionals and to make sure that our customers leave our space with a feeling of satisfaction.
+new:GREEN TEA SALON  “Without change there is no innovation, creativity, or incentive for improvement   Those who initiate change will have a better opportunity to manage the change that is inevitable ” -William Pollard  At the Green Tea Salon, we are constantly striving to be better and provide superior services  We strive to bring in innovative beauty treatments, products and services to keep up with the latest trends  We always hire experienced and talented professionals and to make sure that our customers leave our space with a feeling of satisfaction 
+---------------
+old:
+
+我叫小李。
+new:  我叫小李。
+---------------
+old:
+
+我叫张力。
+new:  我叫张力。
+---------------
+old:
+
+你好！很高兴见到你！
+new:  你好！很高兴见到你！
+---------------
+old:
+
+我叫黄思雨。
+new:  我叫黄思雨。
+---------------
+old:
+
+我在聊天。
+new:  我在聊天。
+---------------
+old:？
+
+我正在学习新的技能。
+new:？  我正在学习新的技能。
+---------------
+old:
+
+你好！很高兴见到你！
+new:  你好！很高兴见到你！
+---------------
+old:
+
+我正在学习编程。
+new:  我正在学习编程。
+---------------
+old:
+
+你好，很高兴见到你。
+new:  你好，很高兴见到你。
+---------------
+old:
+
+1、可以从学习C语言开始，因为C++就是在C语言的基础上发展起来的，C语言和C++是一对紧密的兄弟感情；
+
+2、在学习时一定要学会基本的编码技巧，从小的编码问题从基础开始，不要直接去研究高级编程技术，例如：类，函数，指针，模板等；
+
+3、有零散的知识点容易忘记，学习C++的过程中可以定时复习基础知识，可以使用看书、做练习题、把代码手动敲一遍等多种方式，结合使用有助于更好的掌握和巩固知识；
+
+4、可以做大量练习，养成从基本思想出发，编写结构清晰，利用合适的数据结构，能够顺利实现题目要求的习惯；
+
+5、熟练运用C++库函数以及C++程序设计技术,充分利用C++现成的高效率程序结构和函数，大大提高编程效率；
+
+6、看书和实践、勤动手。最好的学习方式是独立地实践，去探索和解决实际问题，从小问题做起，慢慢学会打造属于自己的大模块的程序结构。
+new:  1、可以从学习C语言开始，因为C++就是在C语言的基础上发展起来的，C语言和C++是一对紧密的兄弟感情；  2、在学习时一定要学会基本的编码技巧，从小的编码问题从基础开始，不要直接去研究高级编程技术，例如：类，函数，指针，模板等；  3、有零散的知识点容易忘记，学习C++的过程中可以定时复习基础知识，可以使用看书、做练习题、把代码手动敲一遍等多种方式，结合使用有助于更好的掌握和巩固知识；  4、可以做大量练习，养成从基本思想出发，编写结构清晰，利用合适的数据结构，能够顺利实现题目要求的习惯；  5、熟练运用C++库函数以及C++程序设计技术,充分利用C++现成的高效率程序结构和函数，大大提高编程效率；  6、看书和实践、勤动手。最好的学习方式是独立地实践，去探索和解决实际问题，从小问题做起，慢慢学会打造属于自己的大模块的程序结构。

@@ -48,7 +48,7 @@ public class BaiduTTS : MonoBehaviour
         client_Secret = data[1];
         StartCoroutine(GetToken(getTokenAPIPath));
         ccontroller = GameObject.FindWithTag("Config").GetComponent<ConfigController>();
-        config = ccontroller.GetDefaultImageConfig();
+        config = ccontroller.CurImageConfig;
     }
 
     /// <summary>
@@ -78,6 +78,7 @@ public class BaiduTTS : MonoBehaviour
             + "&aue=" + aue
             + "&vol=" + config.vol + "";
         Debug.Log("Token:" + tok);
+        Debug.Log("Person:" + config.per);
     }
 
     /// <summary>

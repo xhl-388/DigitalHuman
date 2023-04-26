@@ -154,5 +154,6 @@ public class ConfigController : MonoBehaviour
         string prefix = iNames[curIndex].Split('.')[0];
         string filePath = CONFIG_PATH + "/" + prefix + ".json";
         WriteConfig(filePath, cfg);
+        Debug.Log("Config saved");
     }
 }

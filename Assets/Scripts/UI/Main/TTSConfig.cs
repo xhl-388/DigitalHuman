@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class TTSConfig : MonoBehaviour
@@ -25,6 +27,7 @@ public class TTSConfig : MonoBehaviour
     [SerializeField] Slider sliderVol;
     [SerializeField] TMP_Dropdown dropdown;
     [SerializeField] Button button;
+    ConfigController ccontroller;
     private void Awake()
     {
         baiduTTS = GameObject.FindWithTag("GameController").GetComponent<BaiduTTS>();
@@ -33,6 +36,33 @@ public class TTSConfig : MonoBehaviour
         sliderVol.onValueChanged.AddListener(OnVolumeChanged);
         dropdown.onValueChanged.AddListener(OnSpeakerChanged);
         button.onClick.AddListener(OnSaveTTSConfig);
+    }
+
+    private void Start()
+    {
+        ccontroller = GameObject.FindWithTag("Config").GetComponent<ConfigController>();
+        ImageConfig ic = ccontroller.CurImageConfig;
+        sliderSpd.value = Convert.ToInt32(ic.spd);
+        sliderPit.value = Convert.ToInt32(ic.pit);
+        sliderVol.value = Convert.ToInt32(ic.vol);
+        string name = "";
+        foreach(var item in SPEAKER_DICT)
+        {
+            if(item.Value == Convert.ToInt32(ic.per))
+            {
+                name = item.Key;
+                break;
+            }
+        }
+        Assert.AreNotEqual(name,"");
+        for(int i =0;i<dropdown.options.Count;i++)
+        {
+            if (dropdown.options[i].text == name)
+            {
+                dropdown.value = i;
+                break;
+            }
+        }
     }
     public void OnSpeedChanged(float val)
     {
